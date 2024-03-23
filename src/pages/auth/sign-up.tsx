@@ -1,15 +1,17 @@
 import { Label } from '@radix-ui/react-label'
+import { useMutation } from '@tanstack/react-query'
 import { Helmet } from 'react-helmet-async'
 import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
+import { registerRestaurant } from '@/api/register-restaurant'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 
 const signUpForm = z.object({
-  storeName: z.string(),
+  restaurantName: z.string(),
   managerName: z.string(),
   phone: z.string(),
   email: z.string().email(),
@@ -25,17 +27,21 @@ export const SignUp = () => {
     formState: { isSubmitting },
   } = useForm<TsignUpForm>()
 
+  const { mutateAsync: registerRestaurantFn } = useMutation({
+    mutationFn: registerRestaurant,
+  })
+
   const navigate = useNavigate()
 
   const handleSignUp = async (data: TsignUpForm) => {
     try {
       console.log(data)
       reset()
-      await new Promise((resolve) => setTimeout(resolve, 2000))
+      await registerRestaurantFn(data)
       toast.success('Restaurante cadastrado com sucesso', {
         action: {
           label: 'Entrar',
-          onClick: () => navigate('/sign-in'),
+          onClick: () => navigate(`/sign-in?email=${data.email}`),
         },
       })
     } catch {
@@ -61,8 +67,12 @@ export const SignUp = () => {
           </div>
           <form onSubmit={handleSubmit(handleSignUp)} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="storeName">Nome do estabelecimento</Label>
-              <Input id="storeName" type="text" {...register('storeName')} />
+              <Label htmlFor="restaurantName">Nome do estabelecimento</Label>
+              <Input
+                id="restaurantName"
+                type="text"
+                {...register('restaurantName')}
+              />
             </div>
             <div className="space-y-2">
               <Label htmlFor="managerName">Seu nome</Label>

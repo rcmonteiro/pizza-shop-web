@@ -1,0 +1,16 @@
+import { api } from '@/lib/axios'
+
+export interface GetProfileResponse {
+  email: string
+  id: string
+  name: string
+  phone: string | null
+  role: 'manager' | 'customer'
+  createdAt: Date | null
+  updatedAt: Date | null
+}
+
+export const getProfile = async () => {
+  const response = await api.get<GetProfileResponse>('/me')
+  return response.data
+}
