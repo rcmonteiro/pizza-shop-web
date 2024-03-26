@@ -106,6 +106,7 @@ export const OrderTableFilters = () => {
               onValueChange={onChange}
               value={value}
               disabled={disabled}
+              aria-label="Status do pedido"
             >
               <SelectTrigger className="h-8 w-[180px]">
                 <SelectValue />
