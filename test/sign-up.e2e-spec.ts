@@ -11,10 +11,7 @@ test('sign up successfully', async ({ page }) => {
 
   const toast = page.getByText('Restaurante cadastrado com sucesso')
 
-  expect(toast).toBeVisible()
-
-  // hack para corrigir o problema de tela em branco do playwright
-  await page.waitForTimeout(2000)
+  await expect(toast).toBeVisible()
 })
 
 test('sign up with invalid credentials', async ({ page }) => {
@@ -28,10 +25,7 @@ test('sign up with invalid credentials', async ({ page }) => {
 
   const toast = page.getByText('Erro ao cadastrar estabelecimento')
 
-  expect(toast).toBeVisible()
-
-  // hack para corrigir o problema de tela em branco do playwright
-  await page.waitForTimeout(2000)
+  await expect(toast).toBeVisible()
 })
 
 test('go to sign-in page', async ({ page }) => {
@@ -40,7 +34,4 @@ test('go to sign-in page', async ({ page }) => {
   await page.getByRole('link', { name: 'Já tem uma conta?' }).click()
 
   expect(page.url()).toContain('/sign-in')
-
-  // hack para corrigir o problema de tela em branco do playwright
-  await page.waitForTimeout(2000)
 })

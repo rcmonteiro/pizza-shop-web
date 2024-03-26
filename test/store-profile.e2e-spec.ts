@@ -10,15 +10,14 @@ test('update profile successfully', async ({ page }) => {
   await page.waitForLoadState('networkidle')
 
   const toast = page.getByText('Perfil atualizado com sucesso!')
-  expect(toast).toBeVisible()
+  await expect(toast).toBeVisible()
 
   await page.getByRole('button', { name: 'Close' }).click()
   await page.waitForTimeout(200)
 
-  expect(page.getByRole('button', { name: 'Pizza Shop Changed' })).toBeVisible()
-
-  // hack para corrigir o problema de tela em branco do playwright
-  await page.waitForTimeout(2000)
+  await expect(
+    page.getByRole('button', { name: 'Pizza Shop Changed' }),
+  ).toBeVisible()
 })
 
 test('update profile with errors', async ({ page }) => {
@@ -31,8 +30,5 @@ test('update profile with errors', async ({ page }) => {
   await page.waitForLoadState('networkidle')
 
   const toast = page.getByText('Falha ao atualizar o perfil, tente novamente!')
-  expect(toast).toBeVisible()
-
-  // hack para corrigir o problema de tela em branco do playwright
-  await page.waitForTimeout(2000)
+  await expect(toast).toBeVisible()
 })
