@@ -34,7 +34,7 @@ describe('OrderTableFilters', () => {
       },
     })
 
-    const statusField = wrapper.getByRole('combobox')
+    const statusField = wrapper.getByRole('comboxbox')
     await user.selectOptions(statusField, 'delivered')
     // const submit = wrapper.getByText('Filtrar resultados')
 

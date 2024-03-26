@@ -18,6 +18,8 @@ export const AppLayout = () => {
 
           if (statusCode === 401 && errorCode === 'UNAUTHORIZED') {
             navigate('/sign-in', { replace: true })
+          } else {
+            throw error
           }
         }
       },

@@ -1,6 +1,6 @@
 import { api } from '@/lib/axios'
 
-type GetRevenueByPeriodResponse = {
+export type GetRevenueByPeriodResponse = {
   date: string
   receipt: number
 }[]
