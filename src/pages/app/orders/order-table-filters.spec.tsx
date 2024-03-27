@@ -4,6 +4,8 @@ import { MemoryRouter } from 'react-router-dom'
 
 import { OrderTableFilters } from './order-table-filters'
 
+window.HTMLElement.prototype.hasPointerCapture = vi.fn()
+
 describe('OrderTableFilters', () => {
   it('should change the url with the given orderId', async () => {
     const user = userEvent.setup()
@@ -34,14 +36,13 @@ describe('OrderTableFilters', () => {
       },
     })
 
-    const statusField = wrapper.getByRole('comboxbox')
-    await user.selectOptions(statusField, 'delivered')
-    // const submit = wrapper.getByText('Filtrar resultados')
+    const statusField = wrapper.getByRole('combobox')
+    await user.click(statusField)
+    const statusPendente = wrapper.getByLabelText('Pendente')
+    await user.click(statusPendente)
+    const submit = wrapper.getByText('Filtrar resultados')
+    await user.click(submit)
 
-    // await user.type(orderIdField, '123')
-    // await user.click(submit)
-    console.log(statusField.outerHTML)
-
-    // expect(location.href).toContain('orderId=123')
+    expect(location.href).toContain('status=pending')
   })
 })
