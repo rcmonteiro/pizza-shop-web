@@ -1,30 +1,10 @@
-# React + TypeScript + Vite
+# Pizza Shop
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Curso: Pizza Shop na Rocketseat (módulo 04)
 
-Currently, two official plugins are available:
+- **vite**
+- **react**
+- **typescript**
+- **tailwind**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Criado um dashboard completo, usando o `radix.ui` para os componentes, estilizando com `tailwind`, consumindo uma API feita em `bun`, com todo cache salvo do lado do cliente usando `@tanstack/react-query`
